@@ -1,15 +1,15 @@
 ---
 version: '3'
 services:
-  netbox:
+  nautobot:
     build:
       context: ../
       dockerfile: development/Dockerfile
-    image: "ntc-netbox-plugin-nautobot-ansible/netbox:${NETBOX_VER}-py${PYTHON_VER}"
+    image: "nautobot-plugin-chatops-ansible/nautobot:${NAUTOBOT_VER}-py${PYTHON_VER}"
     command: >
-      sh -c "python manage.py migrate &&
-             python manage.py collectstatic &&
-             python manage.py runserver 0.0.0.0:8000"
+      sh -c "nautobot-server migrate &&
+             nautobot-server collectstatic &&
+             nautobot-server runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     depends_on:
@@ -17,33 +17,29 @@ services:
       - redis
     env_file:
       - ./dev.env
-      - ../creds.env
+      - ../creds.env.example
     volumes:
-      - ./base_configuration.py:/opt/netbox/netbox/netbox/base_configuration.py
-      - ./netbox_${NETBOX_VER}/configuration.py:/opt/netbox/netbox/netbox/configuration.py
-      - ../netbox_nautobot_ansible:/source/netbox_nautobot_ansible
+      - ../nautobot_plugin_chatops_ansible:/source/nautobot_plugin_chatops_ansible
     tty: true
   worker:
     build:
       context: ../
       dockerfile: development/Dockerfile
-    image: "ntc-netbox-plugin-nautobot-ansible/netbox:${NETBOX_VER}-py${PYTHON_VER}"
-    command: sh -c "python manage.py rqworker"
+    image: "nautobot-plugin-chatops-ansible/nautobot:${NAUTOBOT_VER}-py${PYTHON_VER}"
+    command: sh -c "nautobot-server rqworker"
     depends_on:
-      - netbox
+      - nautobot
     env_file:
       - ./dev.env
-      - ../creds.env
+      - ../creds.env.example
     volumes:
-      - ./base_configuration.py:/opt/netbox/netbox/netbox/base_configuration.py
-      - ./netbox_${NETBOX_VER}/configuration.py:/opt/netbox/netbox/netbox/configuration.py
-      - ../netbox_nautobot_ansible:/source/netbox_nautobot_ansible
+      - ../nautobot_plugin_chatops_ansible:/source/nautobot_plugin_chatops_ansible
     tty: true
   postgres:
     image: postgres:10
     env_file: dev.env
     volumes:
-      - pgdata_netbox_nautobot_ansible:/var/lib/postgresql/data
+      - pgdata_nautobot_plugin_chatops_ansible:/var/lib/postgresql/data
   redis:
     image: redis:5-alpine
     command:
@@ -52,4 +48,4 @@ services:
       - redis-server --appendonly yes --requirepass $$REDIS_PASSWORD  ## $$ because of docker-compose
     env_file: ./dev.env
 volumes:
-  pgdata_netbox_nautobot_ansible:
+  pgdata_nautobot_plugin_chatops_ansible:

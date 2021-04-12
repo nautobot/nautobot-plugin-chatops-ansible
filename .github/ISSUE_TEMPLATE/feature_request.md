@@ -6,8 +6,8 @@ about: Propose a new feature or enhancement
 
 ### Environment
 * Python version:  <!-- Example: 3.7.7 -->
-* NetBox version:  <!-- Example: 2.8.4 -->
-* ntc-netbox-plugin-nautobot-ansible version:  <!-- Example: 1.0.0 -->
+* Nautobot version:  <!-- Example: 2.8.4 -->
+* nautobot-plugin-chatops-ansible version:  <!-- Example: 1.0.0 -->
 
 <!--
     Describe in detail the new functionality you are proposing.

@@ -8,12 +8,12 @@ from django_rq import job
 import requests
 import yaml
 
-from netbox_nautobot.workers.base import subcommand_of, handle_subcommands
+from nautobot_chatops.workers.base import subcommand_of, handle_subcommands
 
 
-TOWER_URI = settings.PLUGINS_CONFIG["netbox_nautobot_ansible"].get("tower_uri")
-TOWER_USERNAME = settings.PLUGINS_CONFIG["netbox_nautobot_ansible"].get("tower_username")
-TOWER_PASSWORD = settings.PLUGINS_CONFIG["netbox_nautobot_ansible"].get("tower_password")
+TOWER_URI = settings.PLUGINS_CONFIG["nautobot_plugin_chatops_ansible"].get("tower_uri")
+TOWER_USERNAME = settings.PLUGINS_CONFIG["nautobot_plugin_chatops_ansible"].get("tower_username")
+TOWER_PASSWORD = settings.PLUGINS_CONFIG["nautobot_plugin_chatops_ansible"].get("tower_password")
 
 ANSIBLE_LOGO_PATH = "nautobot_ansible/Ansible_Logo.png"
 ANSIBLE_LOGO_ALT = "Ansible Logo"
@@ -69,7 +69,11 @@ def get_dashboard(dispatcher):
     dispatcher.send_blocks(
         [
             *dispatcher.command_response_header(
-                "ansible", "get-dashboard", [], "Ansible Tower / AWX dashboard", ansible_logo(dispatcher),
+                "ansible",
+                "get-dashboard",
+                [],
+                "Ansible Tower / AWX dashboard",
+                ansible_logo(dispatcher),
             ),
             dispatcher.markdown_block(f"{TOWER_URI}/#/home"),
             dispatcher.markdown_block(
@@ -183,7 +187,11 @@ def get_job_templates(dispatcher):
     dispatcher.send_blocks(
         [
             *dispatcher.command_response_header(
-                "ansible", "get-job-templates", [], "Ansible Tower / AWX job template list", ansible_logo(dispatcher),
+                "ansible",
+                "get-job-templates",
+                [],
+                "Ansible Tower / AWX job template list",
+                ansible_logo(dispatcher),
             ),
             dispatcher.markdown_block(f"{TOWER_URI}/#/templates"),
         ]
@@ -214,7 +222,11 @@ def get_projects(dispatcher):
     dispatcher.send_blocks(
         [
             *dispatcher.command_response_header(
-                "ansible", "get-projects", [], "Ansible Tower / AWX project list", ansible_logo(dispatcher),
+                "ansible",
+                "get-projects",
+                [],
+                "Ansible Tower / AWX project list",
+                ansible_logo(dispatcher),
             ),
             dispatcher.markdown_block(f"{TOWER_URI}/#/projects"),
         ]

@@ -1,12 +1,12 @@
 ---
 name: 🐛 Bug Report
-about: Report a reproducible bug in the current release of ntc-netbox-plugin-nautobot-ansible
+about: Report a reproducible bug in the current release of nautobot-plugin-chatops-ansible
 ---
 
 ### Environment
 * Python version:  <!-- Example: 3.7.7 -->
-* NetBox version:  <!-- Example: 2.8.4 -->
-* ntc-netbox-plugin-nautobot-ansible version:  <!-- Example: 1.0.0 -->
+* Nautobot version:  <!-- Example: 2.8.4 -->
+* nautobot-plugin-chatops-ansible version:  <!-- Example: 1.0.0 -->
 
 <!--
     Describe in detail the exact steps that someone else can take to reproduce
