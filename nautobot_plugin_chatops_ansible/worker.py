@@ -1,28 +1,16 @@
 """Worker functions implementing Nautobot "ansible" command and subcommands."""
-
 import json
 
-from django.conf import settings
 from django_rq import job
 
 import requests
 import yaml
 
 from nautobot_chatops.workers.base import subcommand_of, handle_subcommands
-
-
-TOWER_URI = settings.PLUGINS_CONFIG["nautobot_plugin_chatops_ansible"].get("tower_uri")
-TOWER_USERNAME = settings.PLUGINS_CONFIG["nautobot_plugin_chatops_ansible"].get("tower_username")
-TOWER_PASSWORD = settings.PLUGINS_CONFIG["nautobot_plugin_chatops_ansible"].get("tower_password")
+from .tower import TOWER_URI, tower_api, retrieve_job_templates
 
 ANSIBLE_LOGO_PATH = "nautobot_ansible/Ansible_Logo.png"
 ANSIBLE_LOGO_ALT = "Ansible Logo"
-
-
-@job("default")
-def ansible(subcommand, **kwargs):
-    """Interact with Ansible Tower."""
-    return handle_subcommands("ansible", subcommand, **kwargs)
 
 
 def ansible_logo(dispatcher):
@@ -30,33 +18,22 @@ def ansible_logo(dispatcher):
     return dispatcher.image_element(dispatcher.static_url(ANSIBLE_LOGO_PATH), alt_text=ANSIBLE_LOGO_ALT)
 
 
-def tower_api(action, api_path, **kwargs):
-    """Make a call to the AWX / Tower REST API.
-
-    Args:
-      action (str): HTTP action "POST", "GET" etc.
-      api_path (str): API path such as "jobs/"; "{TOWER_URI}/api/v2/" will be automatically prepended.
-      **kwargs: Passed through to requests.request() call.
-
-    Returns:
-      requests.Response
-    """
-    if not TOWER_URI or not TOWER_USERNAME or not TOWER_PASSWORD:
-        raise ValueError("Missing required parameters for Tower access - check environment and plugin configuration")
-
-    if "headers" not in kwargs:
-        kwargs["headers"] = {}
-    if "Accept" not in kwargs["headers"]:
-        kwargs["headers"]["Accept"] = "application/json"
-
-    return requests.request(action, f"{TOWER_URI}/api/v2/{api_path}", auth=(TOWER_USERNAME, TOWER_PASSWORD), **kwargs)
-
-
-def retrieve_job_templates():
-    """Get job template listing from Ansible."""
+def prompt_for_job_template(dispatcher, command):
+    """Prompt the user to select a job template."""
+    job_templates = retrieve_job_templates()
     response = tower_api("GET", "job_templates/")
     data = response.json()
-    return data["results"]
+    job_templates = data["results"]
+    dispatcher.prompt_from_menu(
+        command, "Select job template", [(entry["name"], entry["name"]) for entry in job_templates]
+    )
+    return False
+
+
+@job("default")
+def ansible(subcommand, **kwargs):
+    """Interact with Ansible Tower."""
+    return handle_subcommands("ansible", subcommand, **kwargs)
 
 
 @subcommand_of("ansible")
@@ -238,18 +215,6 @@ def get_projects(dispatcher):
     )
 
     return True
-
-
-def prompt_for_job_template(dispatcher, command):
-    """Prompt the user to select a job template."""
-    job_templates = retrieve_job_templates()
-    response = tower_api("GET", "job_templates/")
-    data = response.json()
-    job_templates = data["results"]
-    dispatcher.prompt_from_menu(
-        command, "Select job template", [(entry["name"], entry["name"]) for entry in job_templates]
-    )
-    return False
 
 
 @subcommand_of("ansible")

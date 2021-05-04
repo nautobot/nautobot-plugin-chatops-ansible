@@ -14,32 +14,20 @@ A plugin for [Nautobot](https://github.com/nautobot/nautobot).
 The plugin is available as a Python package in pypi and can be installed with pip
 
 ```shell
-pip install git+https://github.com/nautobot/nautobot-plugin-chatops.git
+pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
 ```
 
-> The plugin is compatible with Nautobot 1.0.0 and higher
+The plugin requires the following list of environment variables to be added into the environment.
 
-Once installed, the plugin needs to be enabled in your `configuration.py`:
+- `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI
+- `NAUTOBOT_TOWER_USERNAME`: Ansible Tower username
+- `NAUTOBOT_TOWER_PASSWORD`: Ansible Tower password
 
-```python
-# In your configuration.py
-PLUGINS = ["nautobot_chatops", "nautobot_plugin_chatops_ansible"]
+Once you have updated your environment file, restart both nautobot and nautobot-worker
 
-PLUGINS_CONFIG = {
-  "nautobot_chatops": {
-    # ...
-  },
-  "nautobot_plugin_chatops_ansible": {
-    # ADD YOUR SETTINGS HERE
-  }
-}
 ```
-
-The plugin requires the following list of settings (to be added to the `nautobot_plugin_chatops_ansible` key above).
-
-- `tower_uri`: Ansible Tower HTTP URI
-- `tower_username`: Ansible Tower username
-- `tower_password`: Ansible Tower password
+$ sudo systemctl restart nautobot nautobot-worker
+```
 
 ## Usage
 
