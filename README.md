@@ -17,7 +17,7 @@ The plugin is available as a Python package in pypi and can be installed with pi
 pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
 ```
 
-The plugin requires the following list of environment variables to be added into the environment.
+The Nautobot ChatOps Plugin extension requires the following list of environment variables to be added into the environment.
 
 - `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI
 - `NAUTOBOT_TOWER_USERNAME`: Ansible Tower username
