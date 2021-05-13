@@ -11,7 +11,7 @@ A plugin for [Nautobot](https://github.com/nautobot/nautobot).
 | **main** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=main)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
 | **develop** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=develop)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
 
-The plugin is available as a Python package in pypi and can be installed with pip
+The extension is available as a Python package in PyPI and can be installed with pip
 
 ```shell
 pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
