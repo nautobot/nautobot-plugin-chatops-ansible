@@ -1,6 +1,6 @@
-# nautobot-plugin-chatops-ansible
+# nautobot-chatops-extension-ansible
 
-A plugin for [Nautobot](https://github.com/nautobot/nautobot).
+An extension for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
 
 ## Installation
 
@@ -17,7 +17,7 @@ The extension is available as a Python package in PyPI and can be installed with
 pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
 ```
 
-The Nautobot ChatOps Plugin extension requires the following list of environment variables to be added into the environment.
+This ChatOps Extension to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
 
 - `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI
 - `NAUTOBOT_TOWER_USERNAME`: Ansible Tower username
@@ -77,7 +77,7 @@ Each command can be executed with `invoke <command>`. All commands support the a
 #### Testing
 
 ```no-highlight
-  tests            Run all tests for this plugin.
+  tests            Run all tests.
   pydocstyle       Run pydocstyle to validate docstring formatting adheres to NTC defined standards.
   bandit           Run bandit to validate basic static code security analysis.
   black            Run black to check that Python files adhere to its style standards.
