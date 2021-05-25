@@ -1,6 +1,6 @@
-# nautobot-plugin-chatops-ansible
+# nautobot-chatops-extension-ansible
 
-A plugin for [Nautobot](https://github.com/nautobot/nautobot).
+An extension for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
 
 ## Installation
 
@@ -11,35 +11,23 @@ A plugin for [Nautobot](https://github.com/nautobot/nautobot).
 | **main** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=main)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
 | **develop** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=develop)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
 
-The plugin is available as a Python package in pypi and can be installed with pip
+The extension is available as a Python package in PyPI and can be installed with pip
 
 ```shell
-pip install git+https://github.com/nautobot/nautobot-plugin-chatops.git
+pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
 ```
 
-> The plugin is compatible with Nautobot 1.0.0 and higher
+This ChatOps Extension to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
 
-Once installed, the plugin needs to be enabled in your `configuration.py`:
+- `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI
+- `NAUTOBOT_TOWER_USERNAME`: Ansible Tower username
+- `NAUTOBOT_TOWER_PASSWORD`: Ansible Tower password
 
-```python
-# In your configuration.py
-PLUGINS = ["nautobot_chatops", "nautobot_plugin_chatops_ansible"]
+Once you have updated your environment file, restart both nautobot and nautobot-worker
 
-PLUGINS_CONFIG = {
-  "nautobot_chatops": {
-    # ...
-  },
-  "nautobot_plugin_chatops_ansible": {
-    # ADD YOUR SETTINGS HERE
-  }
-}
 ```
-
-The plugin requires the following list of settings (to be added to the `nautobot_plugin_chatops_ansible` key above).
-
-- `tower_uri`: Ansible Tower HTTP URI
-- `tower_username`: Ansible Tower username
-- `tower_password`: Ansible Tower password
+$ sudo systemctl restart nautobot nautobot-worker
+```
 
 ## Usage
 
@@ -89,7 +77,7 @@ Each command can be executed with `invoke <command>`. All commands support the a
 #### Testing
 
 ```no-highlight
-  tests            Run all tests for this plugin.
+  tests            Run all tests.
   pydocstyle       Run pydocstyle to validate docstring formatting adheres to NTC defined standards.
   bandit           Run bandit to validate basic static code security analysis.
   black            Run black to check that Python files adhere to its style standards.
