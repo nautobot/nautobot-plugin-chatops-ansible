@@ -22,6 +22,7 @@ packages = [
 python = "^3.6"
 invoke = "^1.4.1"
 nautobot-chatops = "^1.1.0"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
@@ -30,6 +31,7 @@ bandit = "^1.7.0"
 pylint = "^2.5.2"
 pylint-django = "^2.0.15"
 pydocstyle = "^5.0.2"
+requests-mock = "^1.9.3"
 
 [tool.black]
 line-length = 120

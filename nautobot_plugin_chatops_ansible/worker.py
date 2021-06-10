@@ -1,16 +1,32 @@
 """Worker functions implementing Nautobot "ansible" command and subcommands."""
+from collections import namedtuple
 import json
+import os
 
 from django_rq import job
 
-import requests
 import yaml
 
 from nautobot_chatops.workers.base import subcommand_of, handle_subcommands
-from .tower import TOWER_URI, tower_api, retrieve_job_templates
+from .tower import (
+    run_tower_template,
+    tower_api,
+    retrieve_job_templates,
+    get_tower_inventory,
+    get_tower_inventory_groups,
+    get_tower_inventory_hosts,
+    get_tower_jobs,
+    get_tower_projects,
+    get_tower_template,
+    Tower,
+)
+
+TOWER_URI = os.getenv("NAUTOBOT_TOWER_URI")
 
 ANSIBLE_LOGO_PATH = "nautobot_ansible/Ansible_Logo.png"
 ANSIBLE_LOGO_ALT = "Ansible Logo"
+
+Origin = namedtuple("Origin", ["name", "slug"])
 
 
 def ansible_logo(dispatcher):
@@ -40,8 +56,8 @@ def ansible(subcommand, **kwargs):
 def get_dashboard(dispatcher):
     """Get Ansible Tower / AWX dashboard status."""
     # TODO: the dashboard/ API endpoint says it's deprecated and will be removed
-    response = tower_api("GET", "dashboard/")
-    data = response.json()
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
+    data = tower.get_tower_dashboard()
 
     dispatcher.send_blocks(
         [
@@ -72,28 +88,29 @@ def get_dashboard(dispatcher):
 @subcommand_of("ansible")
 def get_inventory(dispatcher, inventory, group):
     """Get Ansible Tower / AWX inventory details."""
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
     if not inventory:
-        response = tower_api("GET", "inventories/")
-        data = response.json()
+        data = tower.get_tower_inventories()
         dispatcher.prompt_from_menu(
             "ansible get-inventory",
             "Select inventory",
-            [(entry["name"], str(entry["id"])) for entry in data["results"]],
+            [(entry["name"], entry["name"]) for entry in data["results"]],
         )
         return False
 
     if not group:
-        response = tower_api("GET", f"inventories/{inventory}/groups/")
-        data = response.json()
+        data = tower.get_tower_inventory_groups(inventory=inventory)
         dispatcher.prompt_from_menu(
             f"ansible get-inventory {inventory}",
             "Select inventory group",
-            [(entry["name"], str(entry["id"])) for entry in data["results"]],
+            [(entry["name"], entry["name"]) for entry in data["results"]],
         )
         return False
 
-    response = tower_api("GET", f"groups/{group}/hosts/")
-    data = response.json()
+    inventory_id = tower.get_tower_inventory_id(inventory_name=inventory)
+    group_id = tower.get_tower_group_id(inventory_id=inventory_id, group_name=group)
+
+    data = tower.get_tower_inventory_hosts(group_id=group_id)
 
     dispatcher.send_blocks(
         [
@@ -118,10 +135,10 @@ def get_inventory(dispatcher, inventory, group):
 @subcommand_of("ansible")
 def get_jobs(dispatcher, count):
     """Get the status of Ansible Tower / AWX jobs."""
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
     if not count:
         count = 10
-    response = tower_api("GET", "jobs/", params={"order_by": "-created", "page_size": str(count)})
-    jobs = response.json()["results"]
+    jobs = tower.get_tower_jobs(count=count)
 
     dispatcher.send_blocks(
         [
@@ -156,7 +173,8 @@ def get_jobs(dispatcher, count):
 @subcommand_of("ansible")
 def get_job_templates(dispatcher):
     """List available Ansible Tower / AWX job templates."""
-    job_templates = retrieve_job_templates()
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
+    job_templates = tower.retrieve_job_templates()
     if not job_templates:
         dispatcher.send_markdown("No job templates found?")
         return False
@@ -192,9 +210,9 @@ def get_job_templates(dispatcher):
 @subcommand_of("ansible")
 def get_projects(dispatcher):
     """List available Ansible Tower / AWX projects."""
-    response = tower_api("GET", "projects/")
-    data = response.json()
-    projects = data["results"]
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
+
+    projects = tower.get_tower_projects()
 
     dispatcher.send_blocks(
         [
@@ -220,11 +238,12 @@ def get_projects(dispatcher):
 @subcommand_of("ansible")
 def run_job_template(dispatcher, template_name):
     """Execute an Ansible Tower / AWX job template."""
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
+
     if not template_name:
         return prompt_for_job_template(dispatcher, "ansible run-job-template")
 
-    response = tower_api("GET", "job_templates/", params={"name": template_name})
-    data = response.json()
+    data = tower.get_tower_template(template_name=template_name)
     template = data["results"][0] if data["results"] else {}
     if not template:
         dispatcher.send_error("No such job template found")
@@ -232,12 +251,8 @@ def run_job_template(dispatcher, template_name):
 
     # TODO: parse any additional args into extra_vars, perhaps as "keyword=value" pairs?
 
-    response = tower_api(
-        "POST",
-        f"job_templates/{template['id']}/launch/",
-        json={"extra_vars": {"origin": dispatcher.platform_slug, "channel": dispatcher.context.get("channel_name")}},
-    )
-    job_id = response.json()["id"]
+    response = tower.run_tower_template(dispatcher=dispatcher, template_name=template_name)
+    job_id = response["id"]
     dispatcher.send_markdown(
         f"Hey {dispatcher.user_mention()}, Job template {template_name} has been submitted, job ID is {job_id}"
     )
