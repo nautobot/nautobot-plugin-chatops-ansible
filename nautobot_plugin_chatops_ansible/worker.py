@@ -36,9 +36,8 @@ def ansible_logo(dispatcher):
 
 def prompt_for_job_template(dispatcher, command):
     """Prompt the user to select a job template."""
-    job_templates = retrieve_job_templates()
-    response = tower_api("GET", "job_templates/")
-    data = response.json()
+    tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
+    data = tower.retrieve_job_templates()
     job_templates = data["results"]
     dispatcher.prompt_from_menu(
         command, "Select job template", [(entry["name"], entry["name"]) for entry in job_templates]
