@@ -1,7 +1,7 @@
 ---
 # No need to check for security issues in the test scripts!
-# exclude_dirs:
-#   - 
+exclude_dirs: 
+  - "nautobot_plugin_chatops_ansible/tests/"
 
 skips:
   - "B404"
