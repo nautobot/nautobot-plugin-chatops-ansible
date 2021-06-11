@@ -8,18 +8,7 @@ from django_rq import job
 import yaml
 
 from nautobot_chatops.workers.base import subcommand_of, handle_subcommands
-from .tower import (
-    run_tower_template,
-    tower_api,
-    retrieve_job_templates,
-    get_tower_inventory,
-    get_tower_inventory_groups,
-    get_tower_inventory_hosts,
-    get_tower_jobs,
-    get_tower_projects,
-    get_tower_template,
-    Tower,
-)
+from .tower import Tower
 
 TOWER_URI = os.getenv("NAUTOBOT_TOWER_URI")
 
