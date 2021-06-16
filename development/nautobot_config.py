@@ -254,9 +254,9 @@ PLUGINS_CONFIG = {
         "webex_teams_signing_secret": os.environ.get("WEBEX_TEAMS_SIGNING_SECRET"),
     },
     "nautobot_chatops_extension_ansible": {
-        "tower_uri": os.environ.get("TOWER_URI"),
-        "tower_username": os.environ.get("TOWER_USERNAME"),
-        "tower_password": os.environ.get("TOWER_PASSWORD"),
+        "tower_uri": os.getenv("TOWER_URI"),
+        "tower_username": os.getenv("TOWER_USERNAME"),
+        "tower_password": os.getenv("TOWER_PASSWORD"),
     },
 }
 
