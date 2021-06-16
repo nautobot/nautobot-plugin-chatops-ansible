@@ -20,6 +20,7 @@ before_script:
   # When we go public, the following line might need removed.
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - pip install invoke docker-compose
+  - "curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py"
   - "python /tmp/get-poetry.py -y --version 1.1.6"
   - "source $HOME/.poetry/env"
   - "cp development/creds.example.env development/creds.env"
