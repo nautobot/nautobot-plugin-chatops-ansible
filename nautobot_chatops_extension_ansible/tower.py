@@ -5,6 +5,8 @@ import os
 
 import requests
 
+from nautobot.core.settings_funcs import is_truthy
+
 logger = logging.getLogger("rq.worker")
 
 
@@ -17,8 +19,8 @@ class Tower:  # pylint: disable=too-many-function-args
         tower_uri=os.getenv("NAUTOBOT_TOWER_URI"),
         username=os.getenv("NAUTOBOT_TOWER_USERNAME"),
         password=os.getenv("NAUTOBOT_TOWER_PASSWORD"),
-        verify_ssl=os.getenv("NAUTOBOT_TOWER_VERIFY_SSL", True),
-    ):
+        verify_ssl=is_truthy(os.getenv("NAUTOBOT_TOWER_VERIFY_SSL", "true")),
+    ):  # pylint: disable=too-many-arguments
         """Initialization of Tower class.
 
         Args:
@@ -84,7 +86,7 @@ class Tower:  # pylint: disable=too-many-function-args
         """Gets inventory of devices in Ansible Tower."""
         return self._get_tower("inventories/")
 
-    def get_tower_inventory_id(self, inventory_name: str):
+    def get_tower_inventory_id(self, inventory_name: str):  # pylint: disable=inconsistent-return-statements
         """Gets Tower inventory ID from list of inventories.
 
         Args:
@@ -109,7 +111,7 @@ class Tower:  # pylint: disable=too-many-function-args
         """
         return self._get_tower(f"inventories/{inventory}/groups/")
 
-    def get_tower_group_id(self, inventory_id: int, group_name: str):
+    def get_tower_group_id(self, inventory_id: int, group_name: str):  # pylint: disable=inconsistent-return-statements
         """Gets Group ID from groups.
 
         Args:

@@ -236,7 +236,7 @@ NAPALM_ARGS = {}
 PAGINATE_COUNT = 50
 
 # Enable installed plugins. Add the name of each plugin to the list.
-PLUGINS = ["nautobot_chatops", "nautobot_plugin_chatops_ansible"]
+PLUGINS = ["nautobot_chatops", "nautobot_chatops_extension_ansible"]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.
 # Each key in the dictionary is the name of an installed plugin and its value is a dictionary of settings.
@@ -253,7 +253,7 @@ PLUGINS_CONFIG = {
         "webex_teams_token": os.environ.get("WEBEX_TEAMS_ACCESS_TOKEN"),
         "webex_teams_signing_secret": os.environ.get("WEBEX_TEAMS_SIGNING_SECRET"),
     },
-    "nautobot_plugin_chatops_ansible": {
+    "nautobot_chatops_extension_ansible": {
         "tower_uri": os.environ.get("TOWER_URI"),
         "tower_username": os.environ.get("TOWER_USERNAME"),
         "tower_password": os.environ.get("TOWER_PASSWORD"),
