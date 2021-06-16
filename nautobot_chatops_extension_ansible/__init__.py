@@ -1,4 +1,4 @@
-"""Plugin declaration for nautobot_plugin_chatops_ansible."""
+"""Plugin declaration for nautobot_chatops_extension_ansible."""
 
 __version__ = "0.0.1"
 
@@ -6,9 +6,9 @@ from nautobot.extras.plugins import PluginConfig
 
 
 class NautobotAnsibleConfig(PluginConfig):
-    """Plugin configuration for the nautobot_plugin_chatops_ansible plugin."""
+    """Plugin configuration for the nautobot_chatops_extension_ansible plugin."""
 
-    name = "nautobot_plugin_chatops_ansible"
+    name = "nautobot_chatops_extension_ansible"
     verbose_name = "Nautobot Nautobot Ansible Tower integration"
     version = __version__
     author = "Network to Code, LLC"
