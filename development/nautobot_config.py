@@ -232,9 +232,9 @@ PLUGINS_CONFIG = {
         "mattermost_url": os.environ.get("MATTERMOST_URL"),
     },
     "nautobot_chatops_extension_ansible": {
-        "tower_uri": os.environ.get("TOWER_URI"),
-        "tower_username": os.environ.get("TOWER_USERNAME"),
-        "tower_password": os.environ.get("TOWER_PASSWORD"),
+        "tower_uri": os.getenv("TOWER_URI"),
+        "tower_username": os.getenv("TOWER_USERNAME"),
+        "tower_password": os.getenv("TOWER_PASSWORD"),
     },
 }
 
