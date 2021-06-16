@@ -235,7 +235,7 @@ PLUGINS_CONFIG = {
         "tower_uri": os.getenv("NAUTOBOT_TOWER_URI"),
         "tower_username": os.getenv("NAUTOBOT_TOWER_USERNAME"),
         "tower_password": os.getenv("NAUTOBOT_TOWER_PASSWORD"),
-        "tower_verify_ssl": is_truthy(os.getenv("NAUTOBOT_TOWER_VERIFY_SSL", "true"))
+        "tower_verify_ssl": is_truthy(os.getenv("NAUTOBOT_TOWER_VERIFY_SSL", "true")),
     },
 }
 
