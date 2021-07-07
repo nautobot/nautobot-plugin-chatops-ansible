@@ -211,7 +211,7 @@ METRICS_ENABLED = True
 PAGINATE_COUNT = int(os.environ.get("PAGINATE_COUNT", 50))
 
 # Enable installed plugins. Add the name of each plugin to the list.
-PLUGINS = ["nautobot_chatops", "nautobot_capacity_metrics", "nautobot_chatops_extension_ansible"]
+PLUGINS = ["nautobot_chatops", "nautobot_capacity_metrics", "nautobot_plugin_chatops_ansible"]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.
 # Each key in the dictionary is the name of an installed plugin and its value is a dictionary of settings.
@@ -231,7 +231,7 @@ PLUGINS_CONFIG = {
         "mattermost_api_token": os.getenv("MATTERMOST_API_TOKEN"),
         "mattermost_url": os.getenv("MATTERMOST_URL"),
     },
-    "nautobot_chatops_extension_ansible": {
+    "nautobot_plugin_chatops_ansible": {
         "tower_uri": os.getenv("NAUTOBOT_TOWER_URI"),
         "tower_username": os.getenv("NAUTOBOT_TOWER_USERNAME"),
         "tower_password": os.getenv("NAUTOBOT_TOWER_PASSWORD"),

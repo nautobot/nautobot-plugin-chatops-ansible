@@ -1,6 +1,6 @@
-# nautobot-chatops-extension-ansible
+# nautobot-plugin-chatops-ansible
 
-An extension for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
+A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
 
 ## Installation
 
@@ -11,13 +11,13 @@ An extension for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugi
 | **main** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=main)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
 | **develop** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=develop)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
 
-The extension is available as a Python package in PyPI and can be installed with pip
+The plugin is available as a Python package in PyPI and can be installed with pip
 
 ```shell
 pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
 ```
 
-This ChatOps Extension to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
+This ChatOps Plugin to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
 
 - `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI
 - `NAUTOBOT_TOWER_USERNAME`: Ansible Tower username

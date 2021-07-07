@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "nautobot-chatops-extension-ansible"
+name = "nautobot-plugin-chatops-ansible"
 version = "0.0.1"
 description = "Nautobot Chatpops Ansible Tower integration"
 authors = ["Network to Code, LLC <opensource@networktocode.com>"]
@@ -12,11 +12,11 @@ include = [
     "README.md",
 ]
 packages = [
-    { include = "nautobot_chatops_extension_ansible" },
+    { include = "nautobot_plugin_chatops_ansible" },
 ]
 
 [tool.poetry.plugins."nautobot.workers"]
-"ansible" = "nautobot_chatops_extension_ansible.worker:ansible"
+"ansible" = "nautobot_plugin_chatops_ansible.worker:ansible"
 
 [tool.poetry.dependencies]
 python = "^3.6"
