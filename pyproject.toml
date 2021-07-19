@@ -12,11 +12,11 @@ include = [
     "README.md",
 ]
 packages = [
-    { include = "nautobot_plugin_chatops_ansible" },
+    { include = "nautobot_chatops_ansible" },
 ]
 
 [tool.poetry.plugins."nautobot.workers"]
-"ansible" = "nautobot_plugin_chatops_ansible.worker:ansible"
+"ansible" = "nautobot_chatops_ansible.worker:ansible"
 
 [tool.poetry.dependencies]
 python = "^3.6"
