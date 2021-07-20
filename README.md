@@ -8,13 +8,13 @@ A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](h
 
 | Branch      | Status |
 |-------------|------------|
-| **main** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=main)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
-| **develop** | [![Build Status](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible.svg?token=BknroZ7vxquiYcUvP8RC&branch=develop)](https://travis-ci.com/networktocode-llc/nautobot-plugin-chatops-ansible) |
+| **main** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=main)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
+| **develop** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=develop)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
 
 The plugin is available as a Python package in PyPI and can be installed with pip
 
 ```shell
-pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
+pip install git+https://github.com/nautobot/nautobot-plugin-chatops-ansible.git
 ```
 
 This ChatOps Plugin to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
