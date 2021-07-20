@@ -39,7 +39,7 @@ namespace.configure(
     {
         "nautobot_chatops_ansible": {
             "nautobot_ver": "1.0.1",
-            "project_name": "nautobot-plugin-chatops-ansible",
+            "project_name": "nautobot-chatops-ansible",
             "python_ver": "3.6",
             "local": False,
             "compose_dir": os.path.join(os.path.dirname(__file__), "development"),

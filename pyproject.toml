@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "nautobot-plugin-chatops-ansible"
+name = "nautobot-chatops-ansible"
 version = "0.0.1"
 description = "Nautobot Chatpops Ansible Tower integration"
 authors = ["Network to Code, LLC <opensource@networktocode.com>"]
 
 readme = "README.md"
-homepage = "https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible"
-repository = "https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible"
+homepage = "https://github.com/nautobot/nautobot-plugin-chatops-ansible"
+repository = "https://github.com/nautobot/nautobot-plugin-chatops-ansible"
 keywords = ["nautobot", "nautobot-plugin"]
 include = [
     "README.md",

@@ -14,7 +14,7 @@ A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](h
 The plugin is available as a Python package in PyPI and can be installed with pip
 
 ```shell
-pip install git+https://github.com/networktocode-llc/nautobot-plugin-chatops-ansible.git
+pip install git+https://github.com/nautobot/nautobot-plugin-chatops-ansible.git
 ```
 
 This ChatOps Plugin to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
