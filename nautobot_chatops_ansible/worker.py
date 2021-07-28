@@ -93,7 +93,7 @@ def get_inventory(dispatcher, inventory, group):
         data = tower.get_tower_inventory_groups(inventory=inventory)
         LOGGER.debug("Data result: %s", data)
         dispatcher.prompt_from_menu(
-            f'ansible get-inventory "{inventory}"',
+            f"ansible get-inventory '{inventory}'",
             "Select inventory group",
             [(f"{entry['name']}", f"{entry['name']}") for entry in data["results"]],
         )
