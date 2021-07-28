@@ -123,7 +123,6 @@ class Tower:  # pylint: disable=too-many-function-args
             inventory_id (int): The inventory ID
         """
         groups = self._get_tower(f"inventories/{inventory_id}/groups/")["results"]
-        print(f"Found groups: {groups}")
         for group in groups:
             if group["name"] == group_name:
                 return group["id"]

@@ -89,8 +89,6 @@ def get_inventory(dispatcher, inventory, group):
         )
         return False
 
-    print(f"INVENTORY: {inventory}")
-    print(f"GROUP: {group}")
     if not group:
         data = tower.get_tower_inventory_groups(inventory=inventory)
         LOGGER.debug("Data result: %s", data)
@@ -102,12 +100,9 @@ def get_inventory(dispatcher, inventory, group):
         return False
 
     inventory_id = tower.get_tower_inventory_id(inventory_name=inventory)
-    print(f"INVENTORY_ID: {inventory_id}")
     group_id = tower.get_tower_group_id(inventory_id=inventory_id, group_name=group)
-    print(f"GROUP_ID: {group_id}")
-
     data = tower.get_tower_inventory_hosts(group_id=group_id)
-    print(f"data: {data}")
+
     dispatcher.send_blocks(
         [
             *dispatcher.command_response_header(
