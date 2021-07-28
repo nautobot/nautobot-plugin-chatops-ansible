@@ -1,6 +1,7 @@
 """Worker functions implementing Nautobot "ansible" command and subcommands."""
 from collections import namedtuple
 import json
+import logging
 import os
 
 from django_rq import job
@@ -16,6 +17,8 @@ ANSIBLE_LOGO_PATH = "nautobot_ansible/Ansible_Logo.png"
 ANSIBLE_LOGO_ALT = "Ansible Logo"
 
 Origin = namedtuple("Origin", ["name", "slug"])
+
+LOGGER = logging.getLogger("nautobot_plugin_chatops_ansible")
 
 
 def ansible_logo(dispatcher):
@@ -86,20 +89,25 @@ def get_inventory(dispatcher, inventory, group):
         )
         return False
 
+    print(f"INVENTORY: {inventory}")
+    print(f"GROUP: {group}")
     if not group:
         data = tower.get_tower_inventory_groups(inventory=inventory)
+        LOGGER.debug("Data result: %s", data)
         dispatcher.prompt_from_menu(
-            f"ansible get-inventory {inventory}",
+            f'ansible get-inventory "{inventory}"',
             "Select inventory group",
-            [(entry["name"], entry["name"]) for entry in data["results"]],
+            [(f"{entry['name']}", f"{entry['name']}") for entry in data["results"]],
         )
         return False
 
     inventory_id = tower.get_tower_inventory_id(inventory_name=inventory)
+    print(f"INVENTORY_ID: {inventory_id}")
     group_id = tower.get_tower_group_id(inventory_id=inventory_id, group_name=group)
+    print(f"GROUP_ID: {group_id}")
 
     data = tower.get_tower_inventory_hosts(group_id=group_id)
-
+    print(f"data: {data}")
     dispatcher.send_blocks(
         [
             *dispatcher.command_response_header(

@@ -109,16 +109,21 @@ class Tower:  # pylint: disable=too-many-function-args
         Returns:
             (json): JSON data of the Tower groups
         """
-        return self._get_tower(f"inventories/{inventory}/groups/")
+        # Get the inventory ID from the name
+        inventory_id = self.get_tower_inventory_id(inventory_name=inventory)
+
+        # Return the groups of the inventory
+        return self._get_tower(f"inventories/{inventory_id}/groups/")
 
     def get_tower_group_id(self, inventory_id: int, group_name: str):  # pylint: disable=inconsistent-return-statements
         """Gets Group ID from groups.
 
         Args:
             group_name (str): Name of the desired group
-            inventory_id (str): The inventory ID
+            inventory_id (int): The inventory ID
         """
-        groups = self.get_tower_inventory_groups(inventory=inventory_id)["results"]
+        groups = self._get_tower(f"inventories/{inventory_id}/groups/")["results"]
+        print(f"Found groups: {groups}")
         for group in groups:
             if group["name"] == group_name:
                 return group["id"]

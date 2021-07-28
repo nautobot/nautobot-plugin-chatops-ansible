@@ -2,4 +2,4 @@
 skips: []
 # No need to check for security issues in the test scripts!
 exclude_dirs: 
-  - "nautobot_plugin_chatops_ansible/tests/"
+  - "nautobot_chatops_ansible/tests/"
