@@ -95,7 +95,7 @@ def get_inventory(dispatcher, inventory, group):
         dispatcher.prompt_from_menu(
             f"ansible get-inventory '{inventory}'",
             "Select inventory group",
-            [(f"{entry['name']}", f"{entry['name']}") for entry in data["results"]],
+            [(entry["name"], entry["name"]) for entry in data["results"]],
         )
         return False
 
