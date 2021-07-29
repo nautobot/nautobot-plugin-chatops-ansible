@@ -115,7 +115,7 @@ class TestFunctions(SimpleTestCase):
             test_tower = Tower(
                 origin=SLACK_ORIGIN, tower_uri="https://mocktower", username="mock", password="mock", verify_ssl=False
             )
-            inventory_id = test_tower.get_tower_inventory_id(inventory_name="Nautobot SoT Agg Inventory")
+            inventory_id = test_tower.get_tower_inventory_id(inventory_name="NautobotSOT")
             self.assertEqual(inventory_id, 6)
             self.assertFalse(test_tower.tower_verify_ssl)
 
@@ -127,8 +127,8 @@ class TestFunctions(SimpleTestCase):
             test_tower = Tower(
                 origin=SLACK_ORIGIN, tower_uri="https://mocktower", username="mock", password="mock", verify_ssl=False
             )
-            inventory_id = 6
-            inv_groups = test_tower.get_tower_inventory_groups(inventory_id)
+            inventory_name = "NautobotSOT"
+            inv_groups = test_tower.get_tower_inventory_groups(inventory_name)
             self.assertEqual(inv_groups["count"], 34)
             self.assertEqual(len(inv_groups["results"]), 25)
             self.assertEqual(inv_groups["results"][0]["name"], "access_switch")
