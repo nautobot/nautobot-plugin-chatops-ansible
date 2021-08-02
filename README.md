@@ -2,6 +2,53 @@
 
 A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
 
+## Summary
+
+The Nautobot Chatops Ansible plugin extends the capabilities of the Nautobot Chatops plugin to include a new command available to the plugin. This is done by registering to the Python entry point in Nautobot Plugin Chatops, that provides functionality to the code written to interact with Ansible. This plugin introduces the following sub commands to the `ansible` command:
+
+* get_dashboard
+* get_inventory
+* get_projects
+* get_job_templates
+* run_job_template
+* get_jobs
+
+### Dashboard
+
+The dashboard command provides an Ansible Tower/AWX status dashboard. This gives a summary of:
+* How many hosts are on the host
+* How many failed hosts (last job is failed)
+* Total number of inventories
+* How many inventories have failed
+* How many project sync failures have occurred
+
+### Inventory
+
+The inventory sub-command provides for having inventory details. Providing 
+
+### Projects
+
+Get projects will gather information about the projects available within the Ansible Tower/AWX instance. Information such as the name, description, SCM URL, and SCM branch are provided.
+
+### Job Templates
+
+This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured.
+
+### Run Job Template
+
+The natural progression of gathering job templates is then to execute a particular job template. For those that do not need any extra vars or surveys to be completed, will be able to be run. The response from Ansible Tower/AWX of the job number will then be provided back via chat to know what job number was executed.
+
+### Get Job
+
+The get jobs sub command will ask Tower for the last number of jobs, with a default count of the last 10 jobs. This will give the status of the jobs including:
+
+* Job ID
+* Name of the Job
+* User that launched the job
+* Created
+* Finish time
+* Status of the job
+
 ## Installation
 
 ### Build Status
