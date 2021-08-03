@@ -26,7 +26,7 @@ The dashboard command provides an Ansible Tower/AWX status dashboard. This gives
 
 The inventory sub-command provides for having inventory details. Providing 
 
-### Projects
+### Get Projects
 
 Get projects will gather information about the projects available within the Ansible Tower/AWX instance. Information such as the name, description, SCM URL, and SCM branch are provided.
 
