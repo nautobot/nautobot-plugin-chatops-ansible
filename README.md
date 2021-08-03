@@ -2,6 +2,12 @@
 
 A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
 
+## Build Status
+
+| Branch      | Status |
+|-------------|------------|
+| **main** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=main)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
+| **develop** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=develop)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
 ## Summary
 
 The Nautobot Chatops Ansible plugin extends the capabilities of the Nautobot Chatops plugin to include a new command available to the plugin. This is done by registering to the Python entry point in Nautobot Plugin Chatops, that provides functionality to the code written to interact with Ansible. This plugin introduces the following sub commands to the `ansible` command:
@@ -16,7 +22,7 @@ The Nautobot Chatops Ansible plugin extends the capabilities of the Nautobot Cha
 ### Dashboard
 
 The dashboard command provides an Ansible Tower/AWX status dashboard. This gives a summary of:
-* How many hosts are on the host
+* How many hosts are on the Tower system
 * How many failed hosts (last job is failed)
 * Total number of inventories
 * How many inventories have failed
@@ -24,7 +30,7 @@ The dashboard command provides an Ansible Tower/AWX status dashboard. This gives
 
 ### Inventory
 
-The inventory sub-command provides for having inventory details. Providing 
+The inventory sub-command provides for having inventory details. Providing what hosts are in what inventory.
 
 ### Get Projects
 
@@ -50,13 +56,6 @@ The get jobs sub command will ask Tower for the last number of jobs, with a defa
 * Status of the job
 
 ## Installation
-
-### Build Status
-
-| Branch      | Status |
-|-------------|------------|
-| **main** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=main)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
-| **develop** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=develop)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
 
 The plugin is available as a Python package in PyPI and can be installed with pip
 
