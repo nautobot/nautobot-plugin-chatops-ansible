@@ -36,7 +36,7 @@ This gathers the information about the defined job templates on the Ansible Towe
 
 ### Run Job Template
 
-The natural progression of gathering job templates is then to execute a particular job template. For those that do not need any extra vars or surveys to be completed, will be able to be run. The response from Ansible Tower/AWX of the job number will then be provided back via chat to know what job number was executed.
+The natural progression of gathering job templates is then to execute a particular job template. If a templates does not need any extra vars or surveys to be completed, it will be able to be executed. The response from Ansible Tower/AWX of the job number will then be provided back via chat to know what job number was executed.
 
 ### Get Job
 
