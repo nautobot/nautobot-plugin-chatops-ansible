@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nautobot-chatops-ansible"
-version = "1.0.0"
+version = "1.0.1"
 description = "Nautobot Chatpops Ansible Tower integration"
 authors = ["Network to Code, LLC <opensource@networktocode.com>"]
 

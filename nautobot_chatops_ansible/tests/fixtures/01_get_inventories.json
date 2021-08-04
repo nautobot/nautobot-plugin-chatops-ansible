@@ -271,7 +271,7 @@
             },
             "created": "2020-07-11T11:55:46.171153Z",
             "modified": "2020-07-11T11:55:46.171166Z",
-            "name": "Nautobot SoT Agg Inventory",
+            "name": "NautobotSOT",
             "description": "All data from Nautobot SoT Agg API (plugin)",
             "organization": 1,
             "kind": "",
