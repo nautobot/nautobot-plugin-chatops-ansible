@@ -30,7 +30,8 @@ def prompt_for_job_template(dispatcher, command):
     """Prompt the user to select a job template."""
     tower = Tower(origin=Origin(dispatcher.platform_name, dispatcher.platform_slug))
     data = tower.retrieve_job_templates()
-    job_templates = data["results"]
+    LOGGER.debug("Data for job template: %s", data)
+    job_templates = data
     dispatcher.prompt_from_menu(
         command, "Select job template", [(entry["name"], entry["name"]) for entry in job_templates]
     )
