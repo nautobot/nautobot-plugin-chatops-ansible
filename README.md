@@ -8,7 +8,10 @@ A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](h
 |-------------|------------|
 | **main** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=main)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
 | **develop** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=develop)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
+
 ## Summary
+
+Chatbot that allows users to communicate directly with Ansible AWX/Tower from various chat platforms.
 
 The Nautobot Chatops Ansible plugin extends the capabilities of the Nautobot Chatops plugin to include a new command available to the plugin. This is done by registering to the Python entry point in Nautobot Plugin Chatops, that provides functionality to the code written to interact with Ansible. This plugin introduces the following sub commands to the `ansible` command:
 
@@ -19,7 +22,7 @@ The Nautobot Chatops Ansible plugin extends the capabilities of the Nautobot Cha
 * run_job_template
 * get_jobs
 
-### Dashboard
+### Get Dashboard
 
 The dashboard command provides an Ansible Tower/AWX status dashboard. This gives a summary of:
 * How many hosts are on the Tower system
@@ -28,7 +31,7 @@ The dashboard command provides an Ansible Tower/AWX status dashboard. This gives
 * How many inventories have failed
 * How many project sync failures have occurred
 
-### Inventory
+### Get Inventory
 
 The inventory sub-command provides for having inventory details. Providing what hosts are in what inventory.
 
@@ -36,7 +39,7 @@ The inventory sub-command provides for having inventory details. Providing what 
 
 Get projects will gather information about the projects available within the Ansible Tower/AWX instance. Information such as the name, description, SCM URL, and SCM branch are provided.
 
-### Job Templates
+### Get Job Templates
 
 This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured.
 
@@ -44,7 +47,7 @@ This gathers the information about the defined job templates on the Ansible Towe
 
 The natural progression of gathering job templates is then to execute a particular job template. If a templates does not need any extra vars or surveys to be completed, it will be able to be executed. The response from Ansible Tower/AWX of the job number will then be provided back via chat to know what job number was executed.
 
-### Get Job
+### Get Jobs
 
 The get jobs sub command will ask Tower for the last number of jobs, with a default count of the last 10 jobs. This will give the status of the jobs including:
 
