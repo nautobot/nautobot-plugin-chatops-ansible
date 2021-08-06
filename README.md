@@ -33,7 +33,7 @@ The dashboard command provides an Ansible Tower/AWX status dashboard. This gives
 
 ### Get Inventory
 
-The inventory sub-command provides for having inventory details. Providing what hosts are in what inventory.
+The inventory sub-command provides inventories avalable and the details of those inventories.
 
 ### Get Projects
 
@@ -41,11 +41,11 @@ Get projects will gather information about the projects available within the Ans
 
 ### Get Job Templates
 
-This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured.
+This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured. It will provide the name, description, project, and the associated inventory for the selected Job Template.
 
 ### Run Job Template
 
-The natural progression of gathering job templates is then to execute a particular job template. If a templates does not need any extra vars or surveys to be completed, it will be able to be executed. The response from Ansible Tower/AWX of the job number will then be provided back via chat to know what job number was executed.
+The natural progression of gathering job templates is then to execute a particular job template. Executes a Job Template that does not require extra vars or surveys to be completed. The Job ID for the executed job template will be provided via a chat response.
 
 ### Get Jobs
 
