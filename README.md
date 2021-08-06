@@ -33,7 +33,7 @@ The dashboard command provides an Ansible Tower/AWX status dashboard. This gives
 
 ### Get Inventory
 
-The inventory sub-command provides inventories avalable and the details of those inventories.
+The inventory sub-command provides inventories available and the details of those inventories.
 
 ### Get Projects
 
