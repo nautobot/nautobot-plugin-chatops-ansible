@@ -151,7 +151,7 @@ def get_jobs(dispatcher, count):
             (
                 entry["id"],
                 entry["name"],
-                entry["summary_fields"]["created_by"]["username"],
+                entry["summary_fields"].get("created_by", {}).get("username", "Scheduler"),
                 entry["created"],
                 entry["finished"],
                 entry["status"],
