@@ -41,7 +41,7 @@ Get projects will gather information about the projects available within the Ans
 
 ### Get Job Templates
 
-This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured. It will provide the name, description, project, and the associated inventory for the selected Job Template.
+This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured.
 
 ### Run Job Template
 
