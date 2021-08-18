@@ -2,14 +2,63 @@
 
 A plugin for [Nautobot](https://github.com/nautobot/nautobot) [Chatops Plugin](https://github.com/nautobot/nautobot-plugin-chatops/)
 
-## Installation
-
-### Build Status
+## Build Status
 
 | Branch      | Status |
 |-------------|------------|
 | **main** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=main)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
 | **develop** | [![Build Status](https://www.travis-ci.com/nautobot/nautobot-plugin-chatops-ansible.svg?token=D7kytCzfCypoGoueSBqJ&branch=develop)](https://www.travis-ci.com/github/nautobot/nautobot-plugin-chatops-ansible) |
+
+## Summary
+
+Chatbot that allows users to communicate directly with Ansible AWX/Tower from various chat platforms.
+
+The Nautobot Chatops Ansible plugin extends the capabilities of the Nautobot Chatops plugin to include a new command available to the plugin. This is done by registering to the Python entry point in Nautobot Plugin Chatops, that provides functionality to the code written to interact with Ansible. This plugin introduces the following sub commands to the `ansible` command:
+
+* get_dashboard
+* get_inventory
+* get_projects
+* get_job_templates
+* run_job_template
+* get_jobs
+
+### Get Dashboard
+
+The dashboard command provides an Ansible Tower/AWX status dashboard. This gives a summary of:
+* How many hosts are on the Tower system
+* How many failed hosts (last job is failed)
+* Total number of inventories
+* How many inventories have failed
+* How many project sync failures have occurred
+
+### Get Inventory
+
+The inventory sub-command provides inventories available and the details of those inventories.
+
+### Get Projects
+
+Get projects will gather information about the projects available within the Ansible Tower/AWX instance. Information such as the name, description, SCM URL, and SCM branch are provided.
+
+### Get Job Templates
+
+This gathers the information about the defined job templates on the Ansible Tower/AWX instance. It will provide the name, description, project, and the associated inventory with the Job Template configured.
+
+### Run Job Template
+
+The natural progression of gathering job templates is then to execute a particular job template. Executes a Job Template that does not require extra vars or surveys to be completed. The Job ID for the executed job template will be provided via a chat response.
+
+### Get Jobs
+
+The get jobs sub command will ask Tower for the last number of jobs, with a default count of the last 10 jobs. This will give the status of the jobs including:
+
+* Job ID
+* Name of the Job
+* User that launched the job
+* Created
+* Finish time
+* Status of the job
+
+## Installation
 
 The plugin is available as a Python package in PyPI and can be installed with pip
 
