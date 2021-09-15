@@ -33,6 +33,7 @@ pylint-django = "^2.0.15"
 pydocstyle = "^5.0.2"
 requests-mock = "^1.9.3"
 yamllint = "^1.23.0"
+flake8 = "^3.9.2"
 
 [tool.black]
 line-length = 120
