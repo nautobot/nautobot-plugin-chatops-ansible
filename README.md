@@ -68,9 +68,10 @@ pip install git+https://github.com/nautobot/nautobot-plugin-chatops-ansible.git
 
 This ChatOps Plugin to Nautobot ChatOps Plugin requires the following list of environment variables to be added into the environment.
 
-- `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI
+- `NAUTOBOT_TOWER_URI`: Ansible Tower HTTP URI. E.g. (https://exampletower.example.com).
 - `NAUTOBOT_TOWER_USERNAME`: Ansible Tower username
 - `NAUTOBOT_TOWER_PASSWORD`: Ansible Tower password
+- `NAUTOBOT_TOWER_VERIFY_SSL`: Whether to validate SSL.  Defaults to `True`.
 
 Once you have updated your environment file, restart both nautobot and nautobot-worker
 
