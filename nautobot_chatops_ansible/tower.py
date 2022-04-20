@@ -4,7 +4,6 @@ import logging
 import os
 
 import requests
-
 from nautobot.core.settings_funcs import is_truthy
 
 logger = logging.getLogger("rq.worker")
@@ -31,7 +30,7 @@ class Tower:  # pylint: disable=too-many-function-args
             verify_ssl (bool): Verify SSL connections. Defaults to True.
         """
         if tower_uri:
-            self.uri = tower_uri.rstrip()
+            self.uri = tower_uri.rstrip().rstrip('/')
         else:
             self.uri = None
         self.username = username
