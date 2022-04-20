@@ -1,14 +1,13 @@
 """Worker functions implementing Nautobot "ansible" command and subcommands."""
-from collections import namedtuple
 import json
 import logging
 import os
-
-from django_rq import job
+from collections import namedtuple
 
 import yaml
+from django_rq import job
+from nautobot_chatops.workers.base import handle_subcommands, subcommand_of
 
-from nautobot_chatops.workers.base import subcommand_of, handle_subcommands
 from .tower import Tower
 
 TOWER_URI = os.getenv("NAUTOBOT_TOWER_URI")
@@ -191,7 +190,7 @@ def get_job_templates(dispatcher):
                 entry["name"],
                 entry["description"],
                 entry["summary_fields"]["project"]["name"],
-                entry["summary_fields"]["inventory"]["name"],
+                entry["summary_fields"].get("inventory", {}).get("name", "Ask Inventory on Launch"),
             )
             for entry in job_templates
         ],
