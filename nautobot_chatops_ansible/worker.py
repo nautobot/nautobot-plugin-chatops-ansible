@@ -6,7 +6,7 @@ from collections import namedtuple
 
 import yaml
 from django_rq import job
-from nautobot_chatops.workers.base import handle_subcommands, subcommand_of
+from nautobot_chatops.workers import handle_subcommands, subcommand_of
 
 from .tower import Tower
 
