@@ -74,6 +74,46 @@ class TestFunctions(SimpleTestCase):
             with self.assertRaises(ValueError):
                 Tower(origin=SLACK_ORIGIN, tower_uri=None, username="mock", password="mock", verify_ssl=False)
 
+    def test_fail_uri_scheme_wrong(self):
+        """Test URI scheme is http or https"""
+        with requests_mock.Mocker() as mock:
+            load_api_calls(mock)
+
+            with self.assertRaises(ValueError):
+                Tower(
+                    origin=SLACK_ORIGIN, tower_uri="ftp://mocktower", username="mock", password="mock", verify_ssl=False
+                )
+
+    def test_success_uri_strip(self):
+        """Test rstrip on a trailing URI slash."""
+        with requests_mock.Mocker() as mock:
+            load_api_calls(mock)
+
+            test_tower = Tower(
+                origin=SLACK_ORIGIN, tower_uri="http://mocktower/", username="mock", password="mock", verify_ssl=False
+            )
+            self.assertEqual(test_tower.uri, "http://mocktower")
+
+    def test_success_uri_scheme_http(self):
+        """Test uri scheme as http."""
+        with requests_mock.Mocker() as mock:
+            load_api_calls(mock)
+
+            test_tower = Tower(
+                origin=SLACK_ORIGIN, tower_uri="http://mocktower", username="mock", password="mock", verify_ssl=False
+            )
+            self.assertEqual(test_tower.uri, "http://mocktower")
+
+    def test_success_uri_scheme_https(self):
+        """Test uri scheme as https."""
+        with requests_mock.Mocker() as mock:
+            load_api_calls(mock)
+
+            test_tower = Tower(
+                origin=SLACK_ORIGIN, tower_uri="https://mocktower", username="mock", password="mock", verify_ssl=False
+            )
+            self.assertEqual(test_tower.uri, "https://mocktower")
+
     def test_fail_missing_username(self):
         """Test missing username."""
         with requests_mock.Mocker() as mock:
