@@ -2,27 +2,11 @@
 import json
 import logging
 import os
-from urllib.parse import urlparse
 
 import requests
 from nautobot.core.settings_funcs import is_truthy
 
 logger = logging.getLogger("rq.worker")
-
-
-def _get_uri(uri):
-    """Validate URI schema and no trailing slash.
-
-    Args:
-        uri(str): Tower/AWX URI
-
-    Returns:
-        (str): Validated/Cleaned URI.
-    """
-    valid_uri = urlparse(uri)
-    if valid_uri.scheme not in ["http", "https"]:
-        return None
-    return valid_uri.geturl().rstrip("/")
 
 
 class Tower:  # pylint: disable=too-many-function-args
@@ -46,7 +30,7 @@ class Tower:  # pylint: disable=too-many-function-args
             verify_ssl (bool): Verify SSL connections. Defaults to True.
         """
         if tower_uri:
-            self.uri = _get_uri(tower_uri)
+            self.uri = tower_uri.rstrip().rstrip("/")
         else:
             self.uri = None
         self.username = username
