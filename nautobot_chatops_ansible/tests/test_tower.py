@@ -51,7 +51,7 @@ SLACK_ORIGIN = Origin(name="Slack", slug="slack")
 def load_api_calls(mock):
     """Load all of the API calls into memory for mocking."""
     for api_call in API_CALLS:
-        with open(api_call["fixture"], "r") as file_:
+        with open(api_call["fixture"], "r", encoding="utf-8") as file_:
             data = file_.read()
 
         if api_call["method"] == "get":
