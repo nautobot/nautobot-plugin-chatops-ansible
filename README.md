@@ -137,4 +137,4 @@ Each command can be executed with `invoke <command>`. All commands support the a
 ## Questions
 
 For any questions or comments, feel free to swing by the [Network to Code slack channel](https://networktocode.slack.com/) (channel #networktocode).
-Sign up [here](http://slack.networktocode.com/)
+Sign up [here](http://slack.networktocode.com/).
