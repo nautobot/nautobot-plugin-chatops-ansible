@@ -12,9 +12,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from distutils.util import strtobool
-from invoke import Collection, task as invoke_task
 import os
+from distutils.util import strtobool
+
+from invoke import Collection
+from invoke import task as invoke_task
 
 
 def is_truthy(arg):
@@ -40,7 +42,7 @@ namespace.configure(
         "nautobot_chatops_ansible": {
             "nautobot_ver": "1.0.1",
             "project_name": "nautobot-chatops-ansible",
-            "python_ver": "3.6",
+            "python_ver": "3.7",
             "local": False,
             "compose_dir": os.path.join(os.path.dirname(__file__), "development"),
             "compose_files": [
